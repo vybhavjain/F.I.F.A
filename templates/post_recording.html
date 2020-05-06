@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+    	<title>Post Recoding page </title>
+  	</head>
+
+  	<body>
+		Your spoken text is:  {{text}} <br> The audio path is downloaded in the path :"" {{location}} ""
+		<br>
+
+		<form action="{{url_for('keyword')}}" method = "POST">
+		  <input name = "searchword" type = "text" />Click the button below to see the generated image <br>
+		  <input value = "See image" name="submit" type = "submit"/>
+		</form><br>
+		<br>
+		<br>
+	</body>
+</html>
+
