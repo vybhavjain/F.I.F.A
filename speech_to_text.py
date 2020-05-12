@@ -32,4 +32,4 @@ def listen2(filename):
         print('Google thinks you said:\n' + r.recognize_google(audio))
     except:
         pass
-    return r.recognize_google(audio, key=None, language='en-US', show_all=True)
+    return r.recognize_google(audio)#, key=None, language='en-US', show_all=True)

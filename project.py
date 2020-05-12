@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, request, session, url_for
 import speech_to_text
 import os
+import image_gen
 app = Flask(__name__)
 
 @app.route('/',methods=["GET","POST"])
@@ -11,6 +12,7 @@ def main_page():
         filename = request.form['filename']
         text=speech_to_text.listen2(filename)
         location = os.getcwd()
+        image_gen.generate_image(text)
         return render_template("post_recording.html", text=text, location = location, filename=filename)
 
 @app.route('/keyword',methods=["GET","POST"])
