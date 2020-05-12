@@ -12,7 +12,8 @@ def main_page():
         filename = request.form['filename']
         text=speech_to_text.listen2(filename)
         location = os.getcwd()
-        image_gen.generate_image(text)
+        text_lower = text.lower()
+        image_gen.generate_image(text_lower)
         return render_template("post_recording.html", text=text, location = location, filename=filename)
 
 @app.route('/keyword',methods=["GET","POST"])

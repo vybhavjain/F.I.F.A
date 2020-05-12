@@ -137,4 +137,4 @@ def generate_image(text):
     #save image to the disk, the resulting image is <caption>.png
     save_image(samples, img_file, nrow=int(np.sqrt(20)))
     
-generate_image("asian man")    
+#generate_image("asian man")    
