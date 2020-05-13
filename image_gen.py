@@ -6,6 +6,7 @@ import pro_gan_pytorch.PRO_GAN as pg
 from networks.TextEncoder import Encoder
 from networks.ConditionAugmentation import ConditionAugmentor
 from networks.C_PRO_GAN import ProGAN
+import os 
 
 def generate_image(text):
 
@@ -48,8 +49,8 @@ def generate_image(text):
         device="cpu"
     )
     
-    #c_pro_gan.gen.load_state_dict(th.load("models\\GAN_GEN_3_20.pth"))
-    c_pro_gan.gen.load_state_dict(th.load("models\\GAN_GEN_4_10.pth"))
+    c_pro_gan.gen.load_state_dict(th.load("models\\GAN_GEN_3_20.pth"))
+    #c_pro_gan.gen.load_state_dict(th.load("models\\GAN_GEN_4_10.pth"))
     
     ###################################################################################
     #load my embedding and conditional augmentor
@@ -69,16 +70,16 @@ def generate_image(text):
             num_layers=config.num_layers,
             device=device
         )
-    #text_encoder.load_state_dict(th.load("models\\Encoder_3_20.pth"))
-    text_encoder.load_state_dict(th.load("models\\Encoder_4_10.pth"))
+    text_encoder.load_state_dict(th.load("models\\Encoder_3_20.pth"))
+    #text_encoder.load_state_dict(th.load("models\\Encoder_4_10.pth"))
     
     condition_augmenter = ConditionAugmentor(
             input_size=config.hidden_size,
             latent_size=config.ca_out_size,
             device=device
         )
-    #condition_augmenter.load_state_dict(th.load("models\\Condition_Augmentor_3_20.pth"))
-    condition_augmenter.load_state_dict(th.load("models\\Condition_Augmentor_4_10.pth"))
+    condition_augmenter.load_state_dict(th.load("models\\Condition_Augmentor_3_20.pth"))
+    #condition_augmenter.load_state_dict(th.load("models\\Condition_Augmentor_4_10.pth"))
     
     
     
@@ -133,8 +134,11 @@ def generate_image(text):
     if int(np.power(2, c_pro_gan.depth - current_depth - 1)) > 1:
         samples = upsample(samples, scale_factor=current_depth)
     
-    
+    os.chdir("static")
     #save image to the disk, the resulting image is <caption>.png
     save_image(samples, img_file, nrow=int(np.sqrt(20)))
+    os.chdir('..')
     
-#generate_image("asian man")    
+#generate_image("asian young man")    
+#generate_image("young blonde woman , looks to be of eastern european background . has a short and messy ponytail , blue eyes and a wide smile .")
+

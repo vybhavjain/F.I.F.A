@@ -24,12 +24,11 @@ def listen2(filename):
     
     wavio.write(filename+'.wav', myrecording, fs ,sampwidth=2)
 
-    try:
-        
+    try:        
         r = sr.Recognizer()
         with sr.WavFile(filename + ".wav") as source:              # use "test.wav" as the audio source
             audio = r.record(source)                        # extract audio data from the file
         print('Google thinks you said:\n' + r.recognize_google(audio))
     except:
         pass
-    return r.recognize_google(audio)#, key=None, language='en-US', show_all=True)
+    return r.recognize_google(audio)
