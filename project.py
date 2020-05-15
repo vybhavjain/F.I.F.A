@@ -10,18 +10,20 @@ def main_page():
         return render_template("main_page.html")
     else:
         filename = request.form['filename']
+        print(filename)
         text=speech_to_text.listen2(filename)
         location = os.getcwd()
         text_lower = text.lower()
         image_gen.generate_image(text_lower)
-        return render_template("post_recording.html", text=text, location = location, filename=filename)
+        return render_template("post_recording.html", text=text_lower, location = location, filename=filename)
 
 @app.route('/keyword',methods=["GET","POST"])
 def keyword():
     if request.method == 'GET':
-        #Do other things to fetch image from model
-        location= os.getcwd()
-        return render_template("post_recording.html", image_generated=location)
+        #Fetch image from directory
+        filename=request.args.get("text")
+        print(filename)
+        return render_template("post_recording.html")
         
     #else:
         #Return a 404 not found page

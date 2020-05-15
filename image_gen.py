@@ -34,7 +34,7 @@ def generate_image(text):
         # convert the data into an easyDictionary
         return edict(data)
     
-    config = get_config("configs\\11.conf")
+    config = get_config("configs/11.conf")
     
     c_pro_gan = ProGAN(
         embedding_size=config.hidden_size,
@@ -49,7 +49,7 @@ def generate_image(text):
         device="cpu"
     )
     
-    c_pro_gan.gen.load_state_dict(th.load("models\\GAN_GEN_3_20.pth"))
+    c_pro_gan.gen.load_state_dict(th.load("models/GAN_GEN_3_20.pth"))
     #c_pro_gan.gen.load_state_dict(th.load("models\\GAN_GEN_4_10.pth"))
     
     ###################################################################################
@@ -70,7 +70,7 @@ def generate_image(text):
             num_layers=config.num_layers,
             device=device
         )
-    text_encoder.load_state_dict(th.load("models\\Encoder_3_20.pth"))
+    text_encoder.load_state_dict(th.load("models/Encoder_3_20.pth"))
     #text_encoder.load_state_dict(th.load("models\\Encoder_4_10.pth"))
     
     condition_augmenter = ConditionAugmentor(
@@ -78,7 +78,7 @@ def generate_image(text):
             latent_size=config.ca_out_size,
             device=device
         )
-    condition_augmenter.load_state_dict(th.load("models\\Condition_Augmentor_3_20.pth"))
+    condition_augmenter.load_state_dict(th.load("models/Condition_Augmentor_3_20.pth"))
     #condition_augmenter.load_state_dict(th.load("models\\Condition_Augmentor_4_10.pth"))
     
     

@@ -20,7 +20,7 @@
 		<div class="container h-100 " >
 			<div class="jumbotron vertical-center" >
 		<h6><kbd>Description:</kbd></h6>  {{text}} 
-		<br>]
+		<br>
 		
 		  <input name = "searchword" type = "text" /><br>
 		  <h5><kbd> Click the button below to see the generated image</kbd></h5><br>
@@ -28,14 +28,14 @@
 		  <input value = "See image" id="show_image" name="submit" type = "submit" class="btn btn-success" onclick="show_image();"/><br>
 		  Your image for the description is <br> 
 		<br>
-		<img id="gen_img" width="300" height="300" class="rounded">
-	    <br>
-	
+		<img id="gen_img" width="300" height="300" class="rounded" >
 
+	    <br>
+		
 		<script type="text/javascript">
 			function show_image(){
-				var sourceOfPicture = "https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-320-80.jpg";
-				document.getElementById("gen_img").src=sourceOfPicture.replace();
+				var sourceOfPicture = "{{url_for('static',filename=text)}}";
+				document.getElementById("gen_img").src=sourceOfPicture.replace()+'.png';
 				
 
 
